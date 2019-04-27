@@ -10,7 +10,7 @@ GET _search
 #    |       |     +--- Document ID
 #    |       |     |
 #    V       V     V
-PUT /library/books/1
+PUT /library/_doc/1
 {
   "title": "Norwegian Wood",
   "name": {
@@ -21,9 +21,9 @@ PUT /library/books/1
   "price": 19.95
 }
 
-GET /library/books/1
+GET /library/_doc/1
 
-POST /library/books/
+POST /library/_doc/
 {
   "title": "Kafka on the Shore",
   "name": {
@@ -34,10 +34,10 @@ POST /library/books/
   "price": 19.95
 }
 
-# POST /library/books/ で取得した id を指定してください
-GET /library/books/AVvbMpWIT3Zks7DdP3lQ
+# POST /library/_doc/ で取得した id を指定してください
+GET /library/_doc/q2aZVmoBFWFSqRl8nY0k
 
-PUT /library/books/1
+PUT /library/_doc/1
 {
   "title": "Norwegian Wood",
   "name": {
@@ -48,37 +48,37 @@ PUT /library/books/1
   "price": 29.95
 }
 
-GET /library/books/1
+GET /library/_doc/1
 
-POST /library/books/1/_update
+POST /library/_update/1
 {
   "doc": {
     "price": 10
   }
 }
 
-GET /library/books/1
+GET /library/_doc/1
 
-POST /library/books/1/_update
+POST /library/_update/1
 {
   "doc": {
     "price_jpy": 1800
   }
 }
 
-GET /library/books/1
+GET /library/_doc/1
 
-DELETE /library/books/1
+DELETE /library/_doc/1
 
-GET /library/books/1
-
-DELETE /library
-
-GET /libray/books/2
+GET /library/_doc/1
 
 DELETE /library
 
-POST /library/books/_bulk
+GET /libray/_doc/2
+
+DELETE /library
+
+POST /library/_bulk
 {"index": {"_id": 1}}
 {"title": "The quick brown fox", "price": 5}
 {"index": {"_id": 2}}
@@ -90,9 +90,9 @@ POST /library/books/_bulk
 {"index": {"_id": 5}}
 {"title": "Lazy dog", "price": 9}
 
-GET /library/books/_search
+GET /library/_search
 
-GET /library/books/_search
+GET /library/_search
 {
   "query": {
     "match": {
@@ -101,7 +101,7 @@ GET /library/books/_search
   }
 }
 
-GET /library/books/_search
+GET /library/_search
 {
   "query": {
     "match": {
@@ -110,7 +110,7 @@ GET /library/books/_search
   }
 }
 
-GET /library/books/_search
+GET /library/_search
 {
   "query": {
     "match_phrase": {
@@ -119,7 +119,7 @@ GET /library/books/_search
   }
 }
 
-GET /library/books/_search?explain
+GET /library/_search?explain
 {
   "query": {
     "match": {
@@ -128,7 +128,7 @@ GET /library/books/_search?explain
   }
 }
 
-GET /library/books/_search
+GET /library/_search
 {
   "query": {
     "bool": {
@@ -148,7 +148,7 @@ GET /library/books/_search
   }
 }
 
-GET /library/books/_search
+GET /library/_search
 {
   "query": {
     "bool": {
@@ -173,7 +173,7 @@ GET /library/books/_search
   }
 }
 
-GET /library/books/_search
+GET /library/_search
 {
   "query": {
     "bool": {
@@ -203,7 +203,7 @@ GET /library/books/_search
   }
 }
 
-GET /library/books/_search
+GET /library/_search
 {
   "query": {
     "bool": {
@@ -219,7 +219,7 @@ GET /library/books/_search
   }
 }
 
-GET /library/books/_search
+GET /library/_search
 {
   "query": {
     "bool": {
@@ -241,7 +241,7 @@ GET /library/books/_search
 
 DELETE /library
 
-POST /library/books/_bulk
+POST /library/_bulk
 {"index": {"_id": 1}}
 {"title": "The quick brown fox", "price": 5}
 {"index": {"_id": 2}}
@@ -255,55 +255,49 @@ POST /library/books/_bulk
 
 GET /library/_mapping
 
-PUT /library/books/_mapping
+PUT /library/_mapping
 {
-  "books": {
-    "properties": {
-      "my_new_field": {
-        "type": "text"
-      }
+  "properties": {
+    "my_new_field": {
+      "type": "text"
     }
   }
 }
 
 GET /library/_mapping
 
-PUT /library/books/_mapping
+PUT /library/_mapping
 {
-  "books": {
-    "properties": {
-      "english_field": {
-        "type": "text",
-        "analyzer": "english"
-      }
+  "properties": {
+    "english_field": {
+      "type": "text",
+      "analyzer": "english"
     }
   }
 }
 
 GET /library/_mapping
 
-PUT /library/books/_mapping
+PUT /library/_mapping
 {
-  "books": {
-    "properties": {
-      "english_field": {
-        "type": "double"
-      }
+  "properties": {
+    "english_field": {
+      "type": "double"
     }
   }
 }
 
-POST /log/transactions
+POST /log/_doc
 {
   "id": 234571
 }
 
-POST /log/transactions
+POST /log/_doc
 {
   "id": 1392.223
 }
 
-GET /log/transactions/_search
+GET /log/_search
 {
   "query": {
     "bool": {
@@ -324,7 +318,7 @@ GET /log/_search
 
 DELETE /library
 
-POST /library/books/_bulk
+POST /library/_bulk
 {"index": {"_id": 1}}
 {"title": "The quick brown fox", "price": 5}
 {"index": {"_id": 2}}
